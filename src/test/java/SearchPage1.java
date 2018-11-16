@@ -9,18 +9,18 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.List;
 
-public class SearchPage extends BaseTest {
+public class SearchPage1 extends BaseTest {
 
     //WebDriver webDriver;
 
-    @FindBy(xpath = "//*[@id=\"lst-ib\"]")
+    @FindBy(xpath = "//*[@class=\"gLFyf gsfi\"]")
     private WebElement searchField;
 
     @FindBy(xpath = "//*[@aria-label=\"Page 2\"]")
-    private WebElement page2;
+    private WebElement linkPage2;
 
 
-    public SearchPage(WebDriver webDriver){
+    public SearchPage1(WebDriver webDriver){
         this.webDriver = webDriver;
         PageFactory.initElements(webDriver,this);
     }
@@ -29,19 +29,25 @@ public class SearchPage extends BaseTest {
         return searchField.isDisplayed();
     }
 
-    public void clickPage2(){
-        page2.click();
+    public SearchPage2 clickPage1(){
+        linkPage2.click();
+        //waitUntilElementIsClickable(linkPage2);
+        return new SearchPage2(webDriver);
     }
 
     public boolean isPageLoaded (){
+        //waitUntilElementIsSelected(searchField);
         return webDriver.getCurrentUrl().contains("google.com")
                 && webDriver.getTitle().contains("Google")
                 && isDisplayedSearchField();
     }
 
-    public void setSearchTerm (String searchTerm){
+    public SearchPage2 setSearchTerm (String searchTerm){
         searchField.sendKeys(searchTerm);
         searchField.sendKeys(Keys.RETURN);
+        //waitUntilElementIsClickable(linkPage2);
+        return new SearchPage2(webDriver);
+
     }
 
 //    public void waitUntilElementIsSelected(WebElement webElement){
@@ -49,11 +55,11 @@ public class SearchPage extends BaseTest {
 //        wait.until(ExpectedConditions.elementToBeSelected(searchField));
 //    }
 
-    public int  countSearchResult (String searchTerm){
+    public int  countSearchResultFromPage1 (String searchTerm){
         int count = 0;
-        List<WebElement> searchResults = webDriver.findElements(By.xpath("//div[@class='srg']/div[@class='g']"));
+        List<WebElement> searchResultsFromPage1 = webDriver.findElements(By.xpath("//div[@class='srg']/div[@class='g']"));
 
-        for (WebElement element : searchResults) {
+        for (WebElement element : searchResultsFromPage1) {
             if(element.getText().toLowerCase().contains(searchTerm.toLowerCase())){
                 count++;
                 //System.out.println(element.getText());
