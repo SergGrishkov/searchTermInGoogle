@@ -1,10 +1,12 @@
+package page;
+
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class SearchPageBase extends BaseTest {
+public class SearchPageBase extends BasePage {
 
     @FindBy(xpath = "//*[@class=\"gLFyf gsfi\"]")
     private WebElement searchField;
@@ -36,7 +38,7 @@ public class SearchPageBase extends BaseTest {
     /**
      * Method, which transmits searchTerm, click Find searchTerm and returned new Page.
      * @param - find text searchTerm.
-     * @return - returned new SearchPage1
+     * @return - returned new page.SearchPage1
      */
     public SearchPage1 setSearchTerm (String searchTerm){
         searchField.sendKeys(searchTerm);

@@ -4,7 +4,7 @@
 
     <test name="Run find search term!">
         <classes>
-            <class name="SearchTermInGoogle">
+            <class name="test.SearchTermInGoogle">
                 <methods>
                     <include name="basicSearchPage" />
                 </methods>

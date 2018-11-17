@@ -1,11 +1,15 @@
+package test;
+
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import page.SearchPage1;
+import page.SearchPage2;
+import page.SearchPageBase;
 
 import static java.lang.Thread.sleep;
 
 
 public class SearchTermInGoogle extends BaseTest {
-    //WebDriver webDriver;
 
     /**
      * This method do across between page and find searchTerm "Selenium". Also, it compare expected and actual result.
@@ -14,7 +18,7 @@ public class SearchTermInGoogle extends BaseTest {
     @Test
     public void basicSearchPage () throws InterruptedException {
         SearchPageBase searchPageBase = new SearchPageBase(webDriver);
-        Assert.assertTrue(searchPageBase.isPageLoaded(),"Search BasePage is not loaded!");
+        Assert.assertTrue(searchPageBase.isPageLoaded(),"Search page.BasePage is not loaded!");
 
         SearchPage1 searchPage1 = searchPageBase.setSearchTerm("Selenium");
         sleep(3000);

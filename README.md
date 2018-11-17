@@ -1,4 +1,4 @@
-Project "SearchTermInGoogle"
+Project "test.SearchTermInGoogle"
 
 Tools for installation:
 
