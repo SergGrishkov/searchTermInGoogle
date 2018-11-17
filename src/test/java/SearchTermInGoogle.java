@@ -9,7 +9,7 @@ public class SearchTermInGoogle extends BaseTest {
 
     /**
      * This method do across between page and find searchTerm "Selenium". Also, it compare expected and actual result.
-     * @throws InterruptedException
+     * @throws - InterruptedException пришлось добавить на самом стерте.
      */
     @Test
     public void basicSearchPage () throws InterruptedException {
