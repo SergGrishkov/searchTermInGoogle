@@ -50,3 +50,35 @@ How to run the current test script:
 Choose 'basicSearchPage.java'
 Click on menu bar 'Run'.
 Click in drop down menu 'Run 'basicSearchPage'
+
+
+Project include 2 folder: "page" and "test".
+
+Folder "page" include classes:
+1. BasePage - include method waitUntilElementIsClickable for wait loaded any WebElements.
+
+2. SearchPageBase include:
+ - isDisplayedSearchField - Method for identification field on display.
+ - isPageLoaded - Method for validation Page loaded.
+ - setSearchTerm - Method, which transmits searchTerm, click Find searchTerm and returned new Page.
+
+3. SearchPage1 include:
+ - isDisplayedSearchField - Method for identification field on display.
+ - clickPage1 - Method, which click second Page and returned new Page.
+ - isPageLoaded - Method for validation Page loaded.
+ - countSearchResultFromPage1 - Method for find blocks with searchTerm on Page1 and count find block with searchTerm.
+
+4. SearchPage2 include:
+ - isDisplayedSearchField - Method for identification field on display.
+ - isPageLoaded - Method for validation Page loaded.
+ - countSearchResultFromPage2 - Method for find blocks with searchTerm on Page2 and count find block with searchTerm.
+
+
+Folder "test" include classes:
+1. BaseTest include methods:
+ - beforeMethod - Method for connect FirefoxDriver and navigate to links "https://www.google.com".
+ - afterMethod - Method, which closed browser after work.
+
+2. SearchTermInGoogle include method basicSearchPage, which do across between page and find searchTerm "Selenium". Also,
+it compare expected and actual result.
+
