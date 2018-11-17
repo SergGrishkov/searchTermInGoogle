@@ -15,20 +15,14 @@ public class BaseTest {
         webDriver.navigate().to("https://www.google.com");
     }
 
-//    @AfterMethod
-//    public void afterMethod () {
-//        webDriver.quit();
-//    }
+    @AfterMethod
+    public void afterMethod () {
+        webDriver.quit();
+    }
 
     public void waitUntilElementIsClickable(WebElement webElement){
         WebDriverWait wait = new WebDriverWait(webDriver, 10);
         wait.until(ExpectedConditions.elementToBeClickable(webElement));
     }
-
-    public void waitUntilElementIsSelected(WebElement webElement){
-        WebDriverWait wait = new WebDriverWait(webDriver, 10);
-        wait.until(ExpectedConditions.elementToBeSelected(webElement));
-    }
-
 
 }

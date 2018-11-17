@@ -1,22 +1,17 @@
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.List;
 
 public class SearchPage1 extends BaseTest {
 
-    //WebDriver webDriver;
-
     @FindBy(xpath = "//*[@class=\"gLFyf gsfi\"]")
     private WebElement searchField;
 
-    @FindBy(xpath = "//*[@aria-label=\"Page 2\"]")
+    @FindBy(xpath = "/html/body/div[6]/div[3]/div[10]/div[1]/div[2]/div/div[5]/div/span[1]/div/table/tbody/tr/td[3]/a")
     private WebElement linkPage2;
 
 
@@ -24,47 +19,50 @@ public class SearchPage1 extends BaseTest {
         this.webDriver = webDriver;
         PageFactory.initElements(webDriver,this);
     }
-
+    /**
+     * Method for identification field on display.
+     * @return - true/false DisplayedSearchField
+     */
     private boolean isDisplayedSearchField (){
         return searchField.isDisplayed();
     }
 
+    /**
+     * Method, which click second Page and returned new Page.
+     * @return - returned new SearchPage2
+     */
     public SearchPage2 clickPage1(){
+        waitUntilElementIsClickable(linkPage2);
         linkPage2.click();
-        //waitUntilElementIsClickable(linkPage2);
         return new SearchPage2(webDriver);
     }
 
+    /**
+     * Method for validation Page loaded.
+     * @return - true/false PageLoaded
+     */
     public boolean isPageLoaded (){
-        //waitUntilElementIsSelected(searchField);
         return webDriver.getCurrentUrl().contains("google.com")
                 && webDriver.getTitle().contains("Google")
                 && isDisplayedSearchField();
     }
 
-    public SearchPage2 setSearchTerm (String searchTerm){
-        searchField.sendKeys(searchTerm);
-        searchField.sendKeys(Keys.RETURN);
-        //waitUntilElementIsClickable(linkPage2);
-        return new SearchPage2(webDriver);
-
-    }
-
-//    public void waitUntilElementIsSelected(WebElement webElement){
-//        WebDriverWait wait = new WebDriverWait(webDriver, 10);
-//        wait.until(ExpectedConditions.elementToBeSelected(searchField));
-//    }
-
+    /**
+     * Method for find blocks with searchTerm on Page1 and count find block with searchTerm.
+     * @param - find text searchTerm.
+     * @return - count find block with searchTerm.
+     */
     public int  countSearchResultFromPage1 (String searchTerm){
         int count = 0;
-        List<WebElement> searchResultsFromPage1 = webDriver.findElements(By.xpath("//div[@class='srg']/div[@class='g']"));
+        List<WebElement> searchResultsFromPage1 = webDriver.findElements(By.xpath("//div[@class='g']"));
 
         for (WebElement element : searchResultsFromPage1) {
             if(element.getText().toLowerCase().contains(searchTerm.toLowerCase())){
                 count++;
-                //System.out.println(element.getText());
+
             }
         }
+        System.out.println("*****************************////******" + count);
         return count;
 
     }

@@ -4,13 +4,10 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class SearchPageBase extends BaseTest{
+public class SearchPageBase extends BaseTest {
 
     @FindBy(xpath = "//*[@class=\"gLFyf gsfi\"]")
     private WebElement searchField;
-
-    @FindBy(xpath = "//*[@aria-label=\"Поиск в Google\"]")
-    private WebElement ariaLabel;
 
 
     public SearchPageBase(WebDriver webDriver){
@@ -18,16 +15,29 @@ public class SearchPageBase extends BaseTest{
         PageFactory.initElements(webDriver,this);
     }
 
+    /**
+     * Method for identification field on display.
+     * @return - true/false DisplayedSearchField
+     */
     private boolean isDisplayedSearchField (){
         return searchField.isDisplayed();
     }
 
+    /**
+     * Method for validation Page loaded.
+     * @return - true/false PageLoaded
+     */
     public boolean isPageLoaded (){
         return webDriver.getCurrentUrl().contains("google.com")
                 && webDriver.getTitle().contains("Google")
                 && isDisplayedSearchField();
     }
 
+    /**
+     * Method, which transmits searchTerm, click Find searchTerm and returned new Page.
+     * @param - find text searchTerm.
+     * @return - returned new SearchPage1
+     */
     public SearchPage1 setSearchTerm (String searchTerm){
         searchField.sendKeys(searchTerm);
         searchField.sendKeys(Keys.RETURN);

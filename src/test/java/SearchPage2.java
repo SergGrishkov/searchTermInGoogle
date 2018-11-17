@@ -16,27 +16,38 @@ public class SearchPage2 extends BaseTest {
         PageFactory.initElements(webDriver,this);
     }
 
+    /**
+     * Method for identification field on display.
+     * @return - true/false DisplayedSearchField
+     */
     private boolean isDisplayedSearchField (){
         return searchField2.isDisplayed();
     }
 
+    /**
+     * Method for validation Page loaded.
+     * @return - true/false PageLoaded
+     */
     public boolean isPageLoaded (){
-        //waitUntilElementIsSelected(searchField2);
         return webDriver.getCurrentUrl().contains("google.com")
                 && webDriver.getTitle().contains("Selenium - Поиск в Google")
                 && isDisplayedSearchField();
     }
-
+    /**
+     * Method for find blocks with searchTerm on Page2 and count find block with searchTerm.
+     * @param - find text searchTerm.
+     * @return - count find block with searchTerm.
+     */
     public int countSearchResultFromPage2 (String searchTerm){
         int count = 0;
-        List<WebElement> searchResultsFromPage2 = webDriver.findElements(By.xpath("//div[@class='srg']/div[@class='g']"));
+        List<WebElement> searchResultsFromPage2 = webDriver.findElements(By.xpath("//div[@class='g']"));
 
         for (WebElement element : searchResultsFromPage2) {
             if(element.getText().toLowerCase().contains(searchTerm.toLowerCase())){
                 count++;
-                //System.out.println(element.getText());
             }
         }
+        System.out.println("*****************************////******" + count);
         return count;
 
     }
