@@ -82,4 +82,3 @@ Folder "test" include classes:
 2. SearchTermInGoogle include method basicSearchPage, which do across between page and find searchTerm "Selenium". Also,
 it compare expected and actual result.
 
-123
